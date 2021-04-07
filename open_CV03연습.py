@@ -8,13 +8,21 @@ drive.mount('/gdrive')
 
 # Commented out IPython magic to ensure Python compatibility.
 # %cd /gdrive/MyDrive/ImageProcClass/Notebook-Week06/
+%cd /gdrive/MyDrive/ImageProcClass/Notebook-Week06/
 
 import matplotlib.pyplot as plt
 import cv2
 import numpy as np
 import matplotlib.cm as cm
 
-image_path = '../Dongkeun-OpenCV-ImgData/lena.jpg'
+image_path = '../Dongkeun-OpenCV-ImgData/lena.jpg' 
+
+def show_image(img, title):
+  img_RGB = img[:, :, ::-1]
+
+  plt.imshow(img_RGB)
+  plt.title(title)
+  plt.show()
 
 """##문제 1: 5점
 
@@ -35,13 +43,23 @@ org_img = cv2.imread(image_path)
 height,width,channel = org_img.shape
 
 new_image = np.full((height,width,channel),113,np.uint8)
-sub_image1 = new_image[:height//2,width//2:]
-sub_image2 = new_image[height//2:,width//2:]
-sub_image3 = new_image[height//2:,:width//2]
-sub_image4 = new_image[:height//2,:width//2]
+sub_image1 = org_img[:height//2,width//2:].copy()
+sub_image2 = org_img[height//2:,width//2:].copy()
+sub_image3 = org_img[height//2:,:width//2].copy()
+sub_image4 = org_img[:height//2,:width//2].copy()
 
-sub_image1[:, :, 2] = org_image[:height//2,width//2:,0]
+sub_image1[:,:,0] =255
+sub_image2[:,:,1] =255
+sub_image3[:,:,2] =255
 
+new_image [:height//2,width//2:]= sub_image1
+new_image [height//2:,width//2:]= sub_image2
+new_image [height//2:,:width//2]= sub_image3
+new_image [:height//2,:width//2]= sub_image4 
+
+show_image(new_image, "this is new image")
+
+#sub_image1[:, :, 2] = org_image[:height//2,width//2:,0]
 """### 문제 2: 5점
 강의자료 2021-1 ImgProc JB-CH05-Updated2103-JH.pdf 에 있는 예제 중, 07.bitwise_op.py 와 08.bitwise_overlap.py 의 예제를 이 노트북에서 실행시키고, 각 라인을 분석해서 자기 노트를 만들기. 
 - 예제에 사용하는 이미지가 '../Dongkeun-OpenCV-ImgData' 폴더에 없는 경우, 공유한 소스코드 폴더에서 필요한 이미지를 '../Dongkeun-OpenCV-ImgData' 에 복사해서 사용할 것. 
