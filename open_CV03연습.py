@@ -7,9 +7,6 @@ from google.colab import drive
 drive.mount('/gdrive')
 
 # Commented out IPython magic to ensure Python compatibility.
-# %cd /gdrive/MyDrive/ImageProcClass/Notebook-Week06/
-%cd /gdrive/MyDrive/ImageProcClass/Notebook-Week06/
-
 import matplotlib.pyplot as plt
 import cv2
 import numpy as np
@@ -17,25 +14,27 @@ import matplotlib.cm as cm
 
 image_path = '../Dongkeun-OpenCV-ImgData/lena.jpg' 
 
-
+#이미지 하나 출력하는 함수 (color 버전)
 def show_image(img, title):
   img_RGB = img[:, :, ::-1]
-
   plt.imshow(img_RGB)
   plt.title(title)
   plt.show()
 
-
-def show_images_linear(img, title):
+#color 이미지 여러개를 한번에 출력하는 함수
+def show_images_linear(img, title, pos):
   img_RGB = img[:, :, ::-1]
+  ax = plt.subplot(2, 2, pos)
   plt.imshow(img_RGB)
   plt.title(title)
-  plt.show()
+  plt.axis('on')
 
-def show_gray_images_linear(img, title):
+#grayscale 이미지 여러개를 한번에 출력하는 함수
+def show_gray_images_linear(img, title, pos):
+  ax = plt.subplot(3, 3, pos)
   plt.imshow(img,cmap='gray')
   plt.title(title)
-  plt.show()
+  plt.axis('on')
 """##문제 1: 5점
 
 
@@ -113,14 +112,16 @@ bitwise_not_1 = cv2.bitwise_not(img_1)
 bitwise_not_2 = cv2.bitwise_not(img_2)
 
 #위에서 회색 이미지 출력하는 함수를 만들어놔서 그걸 이용해서 출력한다.
-
-show_gray_images_linear(img_1,"image 1")
-show_gray_images_linear(img_2,"image 2")
-show_gray_images_linear(bitwise_or,"bitwise or image 1 & image 2")
-show_gray_images_linear(bitwise_and,"bitwise or image 1 & image 2")
-show_gray_images_linear(bitwise_xor,"bitwise or image 1 & image 2")
-show_gray_images_linear(bitwise_not_1,"bitwise not image 1")
-show_gray_images_linear(bitwise_not_2,"bitwise not image 2")
+#보다 깔끔하게 출력하기 위해서 3개 마다 plt.show()를 해서 간격을 만들었다
+show_gray_images_linear(img_1, "image 1", 1)
+show_gray_images_linear(img_2, "image 2", 2)
+show_gray_images_linear(bitwise_or, "image 1 OR image 2", 3)
+plt.show()
+show_gray_images_linear(bitwise_and, "image 1 AND image 2", 4)
+show_gray_images_linear(bitwise_xor, "image 1 XOR image 2", 5)
+show_gray_images_linear(bitwise_not_1, "NOT (image 1)", 6)
+plt.show()
+show_gray_images_linear(bitwise_not_2, "NOT (image 2)", 7)
 
 #맞는 이미지 읽어오기
 #opencv white이미지는 로고 부분이 하얀색인 이미지!
@@ -159,8 +160,11 @@ dst = cv2.add(background,foreground)
 image[y:y+h,x:x+w] = dst
 
 # 위에서 만들어놓은 이미지 보여주는 함수 호출
-show_images_linear(logo,"this is logo")
-show_images_linear(foreground,"this is foreground")
-show_images_linear(background,"this is background")
-show_images_linear(image,"this is result")
-
+#로고 이미지랑 foreground와 backgroung는 작게 보여줘도 될거 같아서 여러개를 한번에 출력하고  
+#위의 것과 구분지어 최종 결과물을 보여주기 위해 중간에 plt.show()를 쓰고 
+#최종 결과물은 1개만 보여주는 show_image 함수를 사용
+show_images_linear(logo,"this is logo",1)
+show_images_linear(foreground,"this is foreground",2)
+show_images_linear(background,"this is background",3)
+plt.show()
+show_image(image,"this is result")
