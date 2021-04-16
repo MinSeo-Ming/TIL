@@ -87,3 +87,71 @@ color :
 image = np.zeros((height,width,3), np.uint8)
 gray :
 image = np.zeros((height,width,), np.uint8)
+
+"""# cv2관련!
+
+## array처리 함수
+
+cv2.flip(src, code) 수직 수평 양축으로 뒤집는거 가능  -> 0: x축 1: y축 -1:양축
+
+cv2.repeat(src,ny,nx) -> ny nx 수직방향 수평 방향으로 반복 횟수
+
+cv2. transpose(이미지) 대각선으로 뒤집기?? 전치 행렬 가로가 세로가 되고 세로가 가로가 됨.
+
+##채널 함수
+
+cv2.split(이미지) ->채널별로 분리됨
+
+cv2.merge([r,g,b]) 이렇게 하면 채널이 합쳐짐 이미지 출력할때 우리가 많이 씀
+
+## 사칙 연산
+
+cv2.add(이미지1 이미지2, mask =마스크)이러면 관심영역만 더하기
+cv2.substract(이미지1,값)을 빼는거
+cv2.addWeighted(이미지1,alpha, 이미지2,beta,gamma)는
+결과값이 alpha *이미지1 + beta *이미지2 +gamma이다.
+
+# 정말 정말 중요한 합성할때 mask만드는법은 threshold를 이용함
+#그리고 하나 명심해야하는거 내가 원하는 결과 값을 알려면 cv2.threshold뒤에 [1]을해야함 왜냐면 얘는 true false값 다음에 경계값이 나옴
+
+first_mask_step = cv2.threshold(이미지2,min값, max값,cv2.THRESHOLD_값)[1]
+masks = cv2.split(first_mask_step)
+
+fg_mask_first= cv2.bitwise_or(masks[0],masks[1])
+fg_mask= cv2.bitwise_or(masks[0],bg_mask_first)
+bg_mask = cv2.bitwise_not(fg_mask)
+
+bg=cv2.bitwise_and(이미지1, 이미지1, mask = bg_mask)
+fg=cv2.bitwise_and(이미지2, 이미지2, mask = fg_mask)
+
+cv2.add(bg, fg)
+or 
+cv2.bitwise_or(bg,fg)
+
+##원소의 절대값 계산
+
+1. cv2.absdiff(원소1 원소2) 두 값의 차이 를 절대값 씌운거
+2. cv2.convertScaleAbs(이미지, dst, alpha,beta)
+입력 배열의 원소에 alpha만큼 곱하고 beta만큼 더해서 절대값을 8bit 자료형으로 변환
+
+##원소의 min max찾기
+
+cv2.min(이미지1,이미지2) 두 이미지 비교해서 작은 값 배열 출력
+
+cv2.max(이미지1,이미지2) 두 이미지 비교해서 큰 값 배열 출력
+
+min,max, min의 위치, max의 위치 =cv2.minMaxLoc(이미지1) 
+그냥 값만 알고 싶음
+min, max,_,_ = cv2.minMaxLoc(이미지)하면 된다.
+
+그리고 영상을 보정할땐 
+비율을 신경써서 하는데 이땐 어떻게 하느냐
+
+###비율 = 255/(max -min)
+### 결과 이미지 - np.round(이미지 - min) *비율).astype(np.uint8)
+로 하면 된다
+"""
+
+
+
+#
