@@ -55,25 +55,43 @@ class TodoController:
         self.date_list = file_read()
 
     #찾기 위해서 리스트화 시킴.
-    def combine_lists(self):
-        plan_list =[]
-        for date in self.date_list:
-            temp =[]
-            re = str(date.id +" "+date.contents+" "+date.title)
+    # def combine_lists(self):
+    #     plan_list =[]
+    #     for date in self.date_list:
+    #         temp =[]
+    #         re = str(date.id +" "+date.contents+" "+date.title)
 
-            plan_list.append(re.split(" "))
-        return plan_list
+    #         plan_list.append(re.split(" "))
+    #     return plan_list
     
 
-    def find_keyword(self,keyword,plan_list):
-        ids=[]
-        for  p in plan_list:
-            if keyword in p:
-                ids.append(p[0])
+    # def find_keyword(self,keyword,plan_list):
+    #     ids=[]
+    #     for  p in plan_list:
+    #         if keyword in p:
+    #             ids.append(p[0])
     
-        if len(ids)==0:
-            raise NotFoundError("일치하는 데이터")
+    #     if len(ids)==0:
+    #         raise NotFoundError("일치하는 데이터")
 
+    #     return ids
+
+    
+    def file_find_word(self,keyword):
+        ids =[]
+        f = open("./date.dat",'r',encoding="UTF8")
+        while True:
+            data =f.readline()
+            if not data :
+                break
+            elif data=="\n":
+                continue
+            if keyword in data:
+                temp = data.split(" : ")
+                ids.append(temp[0])
         return ids
 
-            
+
+
+
+
