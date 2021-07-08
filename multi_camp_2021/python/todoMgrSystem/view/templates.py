@@ -1,3 +1,4 @@
+from exception.exception import NotFoundError
 from entity.models import Todo
 import uuid
 
@@ -8,6 +9,7 @@ def menu_display():
     print("3. 일정 수정")
     print("4. 일정 삭제")
     print("5. 일정 상세보기")
+    print("6. 키워드 검색")
     print("0. 종료")
 
 
@@ -56,3 +58,20 @@ def update_input_display(id):
 
 def message_display(msg):
     print(msg)
+
+
+# def find_keyword(keyword,plan_list):
+#     ids=[]
+#     for p in plan_list:
+#         if p.contain(keyword):
+#             ids.append(p[0])
+    
+#     if len(ids)==0:
+#         raise NotFoundError
+
+#     return ids
+
+
+def key_word_input():
+    keyword = input("검색하고 싶은 키워드는? : ")
+    return keyword

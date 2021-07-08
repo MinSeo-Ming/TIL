@@ -50,7 +50,23 @@ while True:
             message_display(id+" 검색 성공")
         except NotFoundError as e:
             message_display(e)
+    elif menu =="6":
+        keyword = key_word_input()
+        find_lists=[]
+        try:
+            plan_lists = con.combine_lists()
+            find_lists = con.find_keyword(keyword,plan_lists)
+            message_display(keyword+" 검색 성공")
+        except NotFoundError as e:
+            message_display(e)
+        for id in find_lists:
+            try:
+                find=con.get_plan(id)
+                todo_display(find)
+                message_display(id+" 나열 성공")
+            except NotFoundError as e:
+                message_display(e)
 
     else:
-        message_display("\n 1,2,3,4,5,0 중 하나를 입력해주세요.")
+        message_display("\n 1,2,3,4,5,6,0 중 하나를 입력해주세요.")
 
