@@ -1,5 +1,5 @@
 from entity.models import Todo
-
+import uuid
 
 def menu_display():
     print("==== 일정 관리 시스템 ====\n")
@@ -25,7 +25,7 @@ def list_display(plans):
 
 
 def input_display():
-    id = input("아이디 : ")
+    id = uuid.uuid4()
     title = input("제목 : ")
     date =input ("날짜(형식은 YYYY-MM-DD) : ")
     contents = input("일정 내용 : ")
