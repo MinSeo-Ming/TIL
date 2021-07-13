@@ -10,6 +10,7 @@
         <table>
             {% for todo in todo_lists %}
             <tr>
+                <td>{{todo.id}}</td>
                 <td>{{todo.title}}</td>
                 <td><a href="{% url 'todos:detail' todo.id %}"> details </a></td>
                 <td><a href="{% url 'todos:delete' todo.id %}"> 삭제 </a></td>

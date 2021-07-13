@@ -14,15 +14,19 @@ def update(request,todo_id):
 
     todo = get_object_or_404(Todo,pk=todo_id)
     
-    # todo.save()
-    # return render(request,'todos/index.html')
     if request.method =="POST":
         form = TodoWriteForm(request.POST)
         
         if form.is_valid():
-            form.fields['pk']=todo_id
-            todo.delete()
             form.save()
+
+            last = Todo.objects.last()
+            todo.title=last.title
+            todo.content=last.content
+            todo.pub_date =last.pub_date
+            
+            last.delete()
+            todo.save()
             return render(request,'todos/index.html')
         else:
             return render(request,'todos/index.html')
@@ -30,7 +34,9 @@ def update(request,todo_id):
         form =TodoWriteForm()
         return render(request,'todos/update.html',{'form':form})
     
-    
+
+def modify(request,todo_id):
+    pass 
 
 
 def delete(request,todo_id):
@@ -63,7 +69,7 @@ def detail(request,todo_id):
 
 
 def lists(request):
-    todo_lists =Todo.objects.all()
+    todo_lists =Todo.objects.all().order_by("id")
     context = {"todo_lists":todo_lists}
     return render(request,'todos/lists.html',context)
 
