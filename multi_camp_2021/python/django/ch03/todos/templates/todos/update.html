@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Todo </title>
+</head>
+<body>
+    <div id="content">
+        <h1>Todo Modify</h1>
+        <form  method="POST">
+          {% csrf_token%}
+          {{form.as_p}}
+          <input type="submit" value="수정"/>
+        </form>
+    </div>
+</body>
+</html>

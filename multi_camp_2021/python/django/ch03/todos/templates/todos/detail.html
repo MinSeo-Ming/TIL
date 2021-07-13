@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Todo </title>
+</head>
+<body>
+    <div id="content">
+        <h1>Todo Detail</h1>
+        {% if todo %}
+        <tr>
+            <td>{{todo.title}}</td>
+            <td>{{todo.content}}</td>
+            <td>{{todo.pub_date}}</td>
+            <td><a href="{% url 'todos:delete' todo.id %}"> 삭제 </a></td>
+            <td><a href="{% url 'todos:update' todo.id %}"> 수정 </a></td>
+        </tr>
+        {%else%}
+        <p>상세보기가 안됩니다.</p>
+        {%endif%}
+    </div>
+</body>
+</html>

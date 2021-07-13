@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Todo </title>
+</head>
+<body>
+    <div id="content">
+        <h1>Todo List</h1>
+        {%if todo_lists %}
+        <table>
+            {% for todo in todo_lists %}
+            <tr>
+                <td>{{todo.title}}</td>
+                <td><a href="{% url 'todos:detail' todo.id %}"> details </a></td>
+                <td><a href="{% url 'todos:delete' todo.id %}"> 삭제 </a></td>
+            </tr>
+               
+            {% endfor %}
+        </table>
+        {%else%}
+        <p> 일정이 없습니다.</p>
+        {%endif %}
+    </div>
+</body>
+</html>
