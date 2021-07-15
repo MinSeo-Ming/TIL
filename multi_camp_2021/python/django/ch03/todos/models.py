@@ -4,7 +4,6 @@ from django.db.models.base import Model
 
 
 class Todo(models.Model):
-    # id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=50)
     pub_date = models.DateTimeField('date published')
     content = models.CharField(max_length=200)

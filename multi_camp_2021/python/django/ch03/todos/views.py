@@ -35,9 +35,6 @@ def update(request,todo_id):
         return render(request,'todos/update.html',{'form':form})
     
 
-def modify(request,todo_id):
-    pass 
-
 
 def delete(request,todo_id):
 
