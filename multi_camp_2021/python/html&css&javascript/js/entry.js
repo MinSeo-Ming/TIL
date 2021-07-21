@@ -12,6 +12,7 @@ function formCheck(){
           pw_ck.value="";
         }
         else{
+          localStorage.setItem(id.value,pw.value);
           window.location.href="./todo.html";
         }
         
@@ -19,9 +20,8 @@ function formCheck(){
   else{
       id.value="";
       email.value="";
-        pw.value="";
-        pw_ck.value="";
-        alert("아이디, 이메일, 비밀번호, 비밀 번호 확인 전부다 입력해주세요.");
+      pw.value="";
+      pw_ck.value="";
+      alert("아이디, 이메일, 비밀번호, 비밀 번호 확인 전부다 입력해주세요.");
   }
-  
 }

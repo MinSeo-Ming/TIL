@@ -3,7 +3,6 @@ function loginCheck(){
   pw_input = document.getElementById("login_pw");
   if(id_input.value==="cloud_msa"&&
   pw_input.value==="cloud_msa" ){
-    // alert("sucees");
     window.location.href ="./todo.html";   
   }
   else{
