@@ -1,0 +1,17 @@
+{% extends 'base_todos.html' %}
+{% block title %}Todo_Index{%endblock  %}
+{% block content %}
+  <ul>
+    <li><a href="{% url 'todos:todo_list' %}">일정 목록 보기</a></li>
+    <li><a href="{% url 'todos:todo_register' %}">일정 등록</a></li>
+  </ul>
+
+{%endblock%}
+<!-- 
+<ul>
+  <li><a href="/todos/lists/">일정 목록 보기</a></li>
+  <li><a href="/todos/register/">일정 등록</a></li>
+  <li><a href="/todos/details/">일정 상세 보기</a></li>
+  <li><a href="/todos/delete/">일정 삭제</a></li>
+  <li><a href="/todos/update/">일정 수정</a></li>
+</ul> -->

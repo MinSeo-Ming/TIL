@@ -1,0 +1,14 @@
+{% extends 'base_todos.html' %}
+
+{% block content %}
+    <h1>Todo Detail</h1>
+        
+        <tr>
+            <td>{{object.title}}</td>
+            <td>{{object.content}}</td>
+            <td>{{object.pub_date}}</td>
+            <td><a href="{% url 'todos:todo_delete' object.id %}"> 삭제 </a></td>
+            <td><a href="{% url 'todos:todo_update' object.id %}"> 수정 </a></td>
+        </tr>
+        
+{% endblock %}

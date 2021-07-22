@@ -1,0 +1,20 @@
+{% extends 'base_todos.html' %}
+{% block title %}Todo{%endblock  %}
+{% block content %}
+        <h1>Todo List</h1>
+        {%if object_list %}
+        <table>
+            {% for todo in object_list %}
+            <tr>
+                <td>{{todo.title}}</td>
+                
+                <td><a href="{% url 'todos:todo_delete' todo.id %}"> 삭제 </a></td>
+                <td><a href="{% url 'todos:todo_detail' todo.id %}"> detail </a></td>
+            </tr>
+               
+            {% endfor %}
+        </table>
+        {%else%}
+        <p> 일정이 없습니다.</p>
+        {%endif %}
+{%endblock%}
