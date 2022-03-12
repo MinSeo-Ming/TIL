@@ -2,6 +2,8 @@ package Sorting;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Main06 {
@@ -18,16 +20,15 @@ public class Main06 {
     }
 
     private void solution(int n, int[] arr) {
-        int result [] = new int[2];
-
-        for (int i = 1; i < n-1; i++) {
-            if(arr[i]>arr[i+1]){
-                if(result[0]==0) result[0]=i+1;
-                break;
+        ArrayList<Integer> result = new ArrayList<>();
+        int sorted[] = arr.clone();
+        Arrays.sort(sorted);
+        int idx =0;
+        for (int i = 0; i < n; i++) {
+            if(arr[i]!=sorted[i]){
+                result.add(i+1);
             }
-
         }
-        result[1]= n-result[0];
         for (int i : result) {
             System.out.print(i+" ");
         }

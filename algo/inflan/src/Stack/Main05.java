@@ -15,7 +15,7 @@ public class Main05 {
 
     private int solution(char[] arr) {
         int answer = 0;
-        char check='-';
+        char check='-';//바로 앞 인덱스
         Stack<Character> stick = new Stack<>();
         for (char c : arr) {
             if(c=='(')

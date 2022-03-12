@@ -35,7 +35,7 @@ public class Main04 {
         }
         int lt =0;
         for (int rt = L; rt < str.length(); rt++) {
-            am.put(ana.charAt(rt),am.getOrDefault(str.charAt(rt),0)+1);
+            am.put(str.charAt(rt),am.getOrDefault(str.charAt(rt),0)+1);
             if(am.equals(bm)) answer++;
             am.put(str.charAt(lt),am.get(str.charAt(lt))-1);
             if(am.get(str.charAt(lt))==0) am.remove(str.charAt(lt));

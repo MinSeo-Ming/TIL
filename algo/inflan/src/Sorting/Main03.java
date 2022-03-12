@@ -19,10 +19,20 @@ public class Main03 {
             System.out.print(i+" ");
         }
     }
-
+//버블
+//    private int[] solution(int[] arr, int n) {
+//        for (int i = 0; i < n; i++) {
+//            for (int j = 0; j <n-1 ; j++) {
+//                if(arr[j]>arr[j+1])
+//                    swap(arr,j,j+1);
+//            }
+//
+//        }
+//        return arr;
+//    }
     private int[] solution(int[] arr, int n) {
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j <n-1 ; j++) {
+        for (int i = 0; i < n-1; i++) {
+            for (int j = 0; j <n-1 -i; j++) {
                 if(arr[j]>arr[j+1])
                     swap(arr,j,j+1);
             }
@@ -30,7 +40,6 @@ public class Main03 {
         }
         return arr;
     }
-
 
     private void swap(int[] arr, int i, int min_idx) {
         int temp = arr[i];

@@ -2,8 +2,7 @@ package Sorting;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.StringTokenizer;
-import java.util.TreeSet;
+import java.util.*;
 
 public class Main08 {
     public static void main(String[] args) throws Exception{
@@ -26,5 +25,22 @@ public class Main08 {
         }
         Main08 main = new Main08();
 //        System.out.println(main.solution());
+    }
+    static int solution(int n,int m,int[]arr){
+
+        int answer=0;
+        Arrays.sort(arr);
+        int lt=0, rt=n-1;
+        while(lt<=rt){
+            int mid=(lt+rt)/2;
+            if(arr[mid]==m){
+                answer=mid+1;
+                break;
+            }
+            if(arr[mid]>m) rt=mid-1;
+            else lt=mid+1;
+        }
+        return answer;
+
     }
 }
