@@ -30,7 +30,7 @@ public class Main15 {
     }
 
     private void bfs() {
-        Queue<Integer>
+//        Queue<Integer>
     }
 
 
