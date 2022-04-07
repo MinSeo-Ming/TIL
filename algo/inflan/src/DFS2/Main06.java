@@ -5,7 +5,6 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class Main06 {
-    static int max =Integer.MIN_VALUE;
     public static void main(String[] args) throws Exception {
         Main06 main = new Main06();
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -14,16 +13,16 @@ public class Main06 {
         int r = Integer.parseInt(st.nextToken());
 
         int arr[] =  new int[n];
+        st = new StringTokenizer(br.readLine()," ");
         for (int i = 0; i < n; i++) {
-            arr[i] =i+1;
+            arr[i] =Integer.parseInt(st.nextToken());
         }
 
         main.solution(0,new int [r],arr,r,n,0);
 
-        System.out.println(max);
 
     }
-    static void solution(int cnt,int results[],int arr[],int r,int n,int start){
+    static void solution(int cnt,int results[],int arr[],int r,int n,int flag){
         if(cnt == r){
             for (int i = 0; i <r ; i++) {
                 System.out.print(results[i]+" ");
@@ -33,8 +32,9 @@ public class Main06 {
             return;
         }
         for (int i = 0; i < n; i++) {
+            if((flag&1<<i) !=0) continue;
             results[cnt] = arr[i];
-            solution(cnt+1,results,arr,r,n,i);
+            solution(cnt+1,results,arr,r,n,flag|1<<i);
         }
 
 
